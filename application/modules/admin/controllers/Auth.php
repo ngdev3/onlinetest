@@ -55,6 +55,8 @@ class Auth extends CI_Controller {
      * @return	html data
     */
         public function login(){
+            pr(phpinfo()); 
+            die;
 
             if(isPostBack()) 
             {
