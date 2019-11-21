@@ -702,6 +702,26 @@ class Webservices extends REST_Controller {
     
         if(isset($_POST['api_key']) && !empty($_POST['api_key'])){
             if($this->apikey == $_POST['api_key']){
+                $config['upload_path']          = './uploads/';
+                $config['allowed_types']        = 'gif|jpg|png';
+                $config['max_size']             = 100;
+                $config['max_width']            = 1024;
+                $config['max_height']           = 768;
+
+                $this->load->library('upload', $config);
+
+                if ( ! $this->upload->do_upload('file'))
+                {
+                        $error = array('error' => $this->upload->display_errors());
+                        pr($error);
+                       // $this->load->view('upload_form', $error);
+                }
+                else
+                {
+                        $data = array('upload_data' => $this->upload->data());
+                        pr($data);
+                        $this->load->view('upload_success', $data);
+                }
                  pr($_POST); 
                  pr($_FILES);
                  die;
