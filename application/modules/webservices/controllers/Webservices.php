@@ -696,6 +696,37 @@ class Webservices extends REST_Controller {
     }
 
 
+    function logincheck_post(){
+     header('Access-Control-Allow-Origin: *');
+     pr($_POST); die;
+        if(isset($_POST['api_key']) && !empty($_POST['api_key'])){
+            if("oeirutoieurtoueorit" == $_POST['api_key']){
+                $this->form_validation->set_rules('user_id', 'user id', "trim|required");
+                 if ($this->form_validation->run() === true){
+                    $result = $this->Webservice_model->list_users_with_status();
+                    if($result['status'] == 'success'){
+                        $success = array('responseCode' => '200', 'responseStatus' => 'success', 'responseMessage' => $result['success_msg'],'data' => $result['result']);
+                        $this->response($success, 200);
+                    }else{
+                        $error = array('responseCode' => '400', 'responseStatus' => 'error', 'responseMessage' => $result['error_msg']);
+                        $this->response($error, 200);
+                    }
+                 }else{
+                $error_msg = validation_errors();
+                $error = array('responseCode' => '400', 'responseStatus' => 'error', 'responseMessage' => $error_msg);
+                $this->response($error, 200);	
+			    }
+            }else{
+			$error_msg = 'API key is invalid';
+            $error = array('responseCode' => '400', 'responseStatus' => 'error', 'responseMessage' => $error_msg);
+            $this->response($error, 200);
+            }    
+        }else{
+			$error_msg = 'api_key field is required !';
+            $error = array('responseCode' => '400', 'responseStatus' => 'error', 'responseMessage' => $error_msg);
+            $this->response($error, 200);
+        }
+    }
 
 
 }
