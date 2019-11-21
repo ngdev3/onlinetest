@@ -702,7 +702,9 @@ class Webservices extends REST_Controller {
     
         if(isset($_POST['api_key']) && !empty($_POST['api_key'])){
             if($this->apikey == $_POST['api_key']){
-                 pr($_POST); die;
+                 pr($_POST); 
+                 pr($_FILES);
+                 die;
                 $this->form_validation->set_rules('user_id', 'user id', "trim|required");
                  if ($this->form_validation->run() === true){
                     $result = $this->Webservice_model->list_users_with_status();
