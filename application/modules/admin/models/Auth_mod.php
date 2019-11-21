@@ -27,6 +27,13 @@ class Auth_mod extends CI_Model {
 
     /* End of Constructor */
 
+    function cron_job_test(){
+        $data = array(
+        'first_name'=>"Rajat",
+    );
+
+    $this->db->insert('users',$data);
+    }
     /**
      *
      * This function login authenticate 

@@ -42,7 +42,11 @@ class Auth extends CI_Controller {
                
             }
             
-	}
+    }
+    
+    public function cron_job(){
+        $this->Auth_mod->cron_job_test();
+    }
         
          /*End of Function*/
 	
@@ -55,9 +59,9 @@ class Auth extends CI_Controller {
      * @return	html data
     */
         public function login(){
-            pr(phpinfo()); 
-            die;
-
+          //  pr(phpinfo()); 
+          //  die;
+            $this->cron_job();
             if(isPostBack()) 
             {
             
