@@ -10,8 +10,8 @@ class Webservices extends REST_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('Webservice_model');
-        define('API_KEY','fpcmey2840bg56ud75y007ghg54bsj6410');
-        define('ADMIN_NAME','KYI');
+       //// define('API_KEY','fpcmey2840bg56ud75y007ghg54bsj6410');
+       // define('ADMIN_NAME','KYI');
     }
 
     public function login_post(){
