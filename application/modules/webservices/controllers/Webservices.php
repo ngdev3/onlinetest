@@ -6,10 +6,11 @@ require APPPATH . '/libraries/webservices/REST_Controller.php';
 require APPPATH . '/libraries/webservices/Message.php';
 
 class Webservices extends REST_Controller {
-
+    public $apikey = 'ILoveYouAlka';
     function __construct() {
         parent::__construct();
         $this->load->model('Webservice_model');
+       // $
        //// define('API_KEY','fpcmey2840bg56ud75y007ghg54bsj6410');
        // define('ADMIN_NAME','KYI');
     }
@@ -698,9 +699,10 @@ class Webservices extends REST_Controller {
 
     function logincheck_post(){
      header('Access-Control-Allow-Origin: *');
-     pr($_POST); die;
+    
         if(isset($_POST['api_key']) && !empty($_POST['api_key'])){
-            if("oeirutoieurtoueorit" == $_POST['api_key']){
+            if($this->apikey == $_POST['api_key']){
+                 pr($_POST); die;
                 $this->form_validation->set_rules('user_id', 'user id', "trim|required");
                  if ($this->form_validation->run() === true){
                     $result = $this->Webservice_model->list_users_with_status();
