@@ -6,7 +6,7 @@ require APPPATH . '/libraries/webservices/REST_Controller.php';
 require APPPATH . '/libraries/webservices/Message.php';
 
 class Webservices extends REST_Controller {
-    public $apikey = 'ILoveYouAlka';
+    public $apikey = 'fpcmey2840bg56ud75y007ghg54bsj6410';
     function __construct() {
         parent::__construct();
         $this->load->model('Webservice_model');
