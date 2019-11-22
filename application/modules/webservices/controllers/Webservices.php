@@ -696,7 +696,7 @@ class Webservices extends REST_Controller {
         }
     }
 
-
+ 
     function imageupload_post(){
      header('Access-Control-Allow-Origin: *');
     
