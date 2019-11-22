@@ -697,7 +697,7 @@ class Webservices extends REST_Controller {
     }
 
 
-    function logincheck_post(){
+    function imageupload_post(){
      header('Access-Control-Allow-Origin: *');
     
         if(isset($_POST['api_key']) && !empty($_POST['api_key'])){
