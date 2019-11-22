@@ -711,7 +711,7 @@ class Webservices extends REST_Controller {
                     $error = array('error' => $this->upload->display_errors());
                     $error = array('responseCode' => '400', 'responseStatus' => 'error', 'responseMessage' => $error );
                     $this->response($error, 200);
-                }
+                } 
                 else
                 {
                         $data = array('upload_data' => $this->upload->data());
