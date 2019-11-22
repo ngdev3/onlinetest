@@ -715,7 +715,7 @@ class Webservices extends REST_Controller {
                 else
                 {
                         $data = array('upload_data' => $this->upload->data());
-                         $result = $this->Webservice_model->add_image();
+                         $result = $this->Webservice_model->add_image($data);
                         if($result['status'] == 'success'){
                             $success = array('responseCode' => '200', 'responseStatus' => 'success', 'responseMessage' => $result['success_msg'],'data' => $result['result']);
                             $this->response($success, 200);
