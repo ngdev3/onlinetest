@@ -261,9 +261,7 @@ class Webservice_model extends CI_Model {
 
     public function add_image($data){
         if($_POST){
-            pr($data);
-            die;
-
+            $_FILES = $data['upload_data'];
             $add['file_name']    = $_FILES['file_name'];
             $add['file_type']     = $_FILES['file_type'];
             $add['file_size']         = $_FILES['file_size'];
