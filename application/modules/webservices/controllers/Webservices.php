@@ -703,7 +703,7 @@ class Webservices extends REST_Controller {
         if(isset($_POST['api_key']) && !empty($_POST['api_key'])){
             if($this->apikey == $_POST['api_key']){
                 $config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'gif|jpg|png';
+                $config['allowed_types']        = '*';
                  $config['encrypt_name']    =   TRUE;
                 $this->load->library('upload', $config);
                 if ( ! $this->upload->do_upload('file'))
