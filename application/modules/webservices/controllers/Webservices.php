@@ -699,7 +699,7 @@ class Webservices extends REST_Controller {
  
     function imageupload_post(){
      header('Access-Control-Allow-Origin: *');
-    
+    die;
         if(isset($_POST['api_key']) && !empty($_POST['api_key'])){
             if($this->apikey == $_POST['api_key']){
                 $config['upload_path']          = './uploads/';
