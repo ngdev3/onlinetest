@@ -723,7 +723,7 @@ class Webservices extends REST_Controller {
                             $error = array('responseCode' => '400', 'responseStatus' => 'error', 'responseMessage' => $result['error_msg']);
                             $this->response($error, 200);
                         }
-                }
+                } 
                 
             }else{
 			$error_msg = 'API key is invalid';
