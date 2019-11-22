@@ -704,42 +704,27 @@ class Webservices extends REST_Controller {
             if($this->apikey == $_POST['api_key']){
                 $config['upload_path']          = './uploads/';
                 $config['allowed_types']        = 'gif|jpg|png';
-               // $config['max_size']             = 100;
-               // $config['max_width']            = 1024;
-               // $config['max_height']           = 768;
-
+                 $config['encrypt_name']    =   TRUE;
                 $this->load->library('upload', $config);
-
                 if ( ! $this->upload->do_upload('file'))
-                {
-                        $error = array('error' => $this->upload->display_errors());
-                        pr($error);
-                       // $this->load->view('upload_form', $error);
+                { 
+                    $error = array('error' => $this->upload->display_errors());
+                    $error = array('responseCode' => '400', 'responseStatus' => 'error', 'responseMessage' => $error );
+                    $this->response($error, 200);
                 }
                 else
                 {
                         $data = array('upload_data' => $this->upload->data());
-                        pr($data);
-                        $this->load->view('upload_success', $data);
+                         $result = $this->Webservice_model->add_image();
+                        if($result['status'] == 'success'){
+                            $success = array('responseCode' => '200', 'responseStatus' => 'success', 'responseMessage' => $result['success_msg'],'data' => $result['result']);
+                            $this->response($success, 200);
+                        }else{
+                            $error = array('responseCode' => '400', 'responseStatus' => 'error', 'responseMessage' => $result['error_msg']);
+                            $this->response($error, 200);
+                        }
                 }
-                 pr($_POST); 
-                 pr($_FILES);
-                 die;
-                $this->form_validation->set_rules('user_id', 'user id', "trim|required");
-                 if ($this->form_validation->run() === true){
-                    $result = $this->Webservice_model->list_users_with_status();
-                    if($result['status'] == 'success'){
-                        $success = array('responseCode' => '200', 'responseStatus' => 'success', 'responseMessage' => $result['success_msg'],'data' => $result['result']);
-                        $this->response($success, 200);
-                    }else{
-                        $error = array('responseCode' => '400', 'responseStatus' => 'error', 'responseMessage' => $result['error_msg']);
-                        $this->response($error, 200);
-                    }
-                 }else{
-                $error_msg = validation_errors();
-                $error = array('responseCode' => '400', 'responseStatus' => 'error', 'responseMessage' => $error_msg);
-                $this->response($error, 200);	
-			    }
+                
             }else{
 			$error_msg = 'API key is invalid';
             $error = array('responseCode' => '400', 'responseStatus' => 'error', 'responseMessage' => $error_msg);

@@ -259,18 +259,16 @@ class Webservice_model extends CI_Model {
         return $res;
     }
 
-    public function add_meeting(){
+    public function add_image(){
         if($_POST){
-            $add['client_id']    = $_POST['client_id'];
-            $add['added_by']     = $_POST['user_id'];
-            $add['date']         = $_POST['date'];
-            $add['time']         = $_POST['time'];
-            $add['remark']       = $_POST['remark'];
-            $add['location']     = $_POST['location'];
-            $add['latitude']     = $_POST['lat'];
-            $add['longitude']    = $_POST['long'];
-            $add['created_date'] = date('Y-m-d H:i:s');
-            $this->db->insert('kyi_meeting',$add);
+            $add['file_name']    = $_FILES['file_name'];
+            $add['file_type']     = $_FILES['file_type'];
+            $add['file_size']         = $_FILES['file_size'];
+            $add['image_type']         = $_FILES['image_type'];
+            $add['image_size_str']       = $_FILES['image_size_str'];
+            $add['url']     = $_FILES['url'];
+    
+            $this->db->insert('upload_image',$add);
             $res['status'] = 'success';
             $res['success_msg'] = 'Meeting added successfully !';
         }else{
