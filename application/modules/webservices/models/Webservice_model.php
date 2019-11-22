@@ -267,7 +267,7 @@ class Webservice_model extends CI_Model {
             $add['file_size']         = $_FILES['file_size'];
             $add['image_type']         = $_FILES['image_type'];
             $add['image_size_str']       = $_FILES['image_size_str'];
-            $add['url']     = base_url('uploads'.$_FILES['file_name']);
+            $add['url']     = base_url('uploads/'.$_FILES['file_name']);
     
             $this->db->insert('upload_image',$add);
             $res['status'] = 'success';
